@@ -9,8 +9,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -42,8 +46,14 @@ public class User {
 	@Column(name="lastName")
 	private String lastName;
 	
-	@Column(name="role")
-	private String role; //can be either customer or admin
+	//@JsonIgnore
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)//not sure if correct
+    @JoinTable(
+    		name = "User_Roles",
+    		joinColumns = { @JoinColumn(name = "userId")},
+    		inverseJoinColumns = {@JoinColumn(name="roleId")}
+    		)
+    private List<Role> roles;
     
     @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
