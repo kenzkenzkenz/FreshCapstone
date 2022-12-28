@@ -53,7 +53,7 @@ public class User {
     		joinColumns = { @JoinColumn(name = "userId")},
     		inverseJoinColumns = {@JoinColumn(name="roleId")}
     		)
-    private List<Role> roles;
+    		private List<Role> roles;
     
     @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
