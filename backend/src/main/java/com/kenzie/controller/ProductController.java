@@ -13,12 +13,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kenzie.model.Product;
 import com.kenzie.service.ProductService;
 
 @RestController
+//@RequestMapping("/catalog")
 public class ProductController {
 	@Autowired
 	private ProductService service;
@@ -60,7 +62,7 @@ public class ProductController {
 	
 	//vvvvvvvvvvvvvvCUSTOMER VIEWvvvvvvvvvvvvvvvvv
 	
-	@GetMapping("/catalog")
+	@GetMapping("/all")
 	public List<Product> listALLCatalog(){
 		System.out.println("Testing");
 		return service.listAllProduct();
